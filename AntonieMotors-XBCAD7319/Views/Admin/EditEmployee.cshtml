@@ -1,0 +1,58 @@
+﻿@model EmployeeModel
+
+<div class="container">
+    <h2>Edit Employee</h2>
+
+    <!-- Display Current Profile Image -->
+    <div class="form-group">
+        <label>Current Profile Picture:</label>
+        <img src="@Model.profileImageUrl" alt="Employee Profile Image" width="100" height="100" />
+    </div>
+
+    <form asp-action="EditEmployee" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="EmployeeID" />
+
+        <div class="form-group">
+            <label asp-for="firstName"></label>
+            <input class="form-control" asp-for="firstName" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="lastName"></label>
+            <input class="form-control" asp-for="lastName" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="email"></label>
+            <input class="form-control" asp-for="email" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="phone"></label>
+            <input class="form-control" asp-for="phone" />
+        </div>
+
+        <!-- File input for uploading a new profile image -->
+        <div class="form-group">
+            <label for="ProfileImage">Upload New Profile Image:</label>
+            <input type="file" class="form-control" name="ProfileImage" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="EmployeeManagement" class="btn btn-secondary">Cancel</a>
+    </form>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+            <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+            </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+            <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+            </div>
+    }
+</div>

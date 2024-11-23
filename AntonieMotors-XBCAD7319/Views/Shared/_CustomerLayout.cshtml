@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <style>
+
+       
+        #sidebar-wrapper {
+            background-color: #9DC183; 
+            color: white;
+            height: 100vh;
+            position: fixed;
+            width: 250px;
+            overflow-y: auto; 
+        }
+
+     
+        .sidebar-logo {
+            text-align: center;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+            .sidebar-logo img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+            }
+
+            .sidebar-logo h3 {
+                color: black;
+                font-size: 1.25rem;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+      
+        #sidebar-wrapper .list-group-item {
+            background-color: #9DC183;
+            color: black;
+            border: none;
+        }
+
+            #sidebar-wrapper .list-group-item:hover,
+            #sidebar-wrapper .list-group-item:focus {
+                background-color: #1abc9c;
+                color: white;
+            }
+
+           
+            #sidebar-wrapper .list-group-item.text-danger {
+                color: #e74c3c;
+            }
+
+                #sidebar-wrapper .list-group-item.text-danger:hover,
+                #sidebar-wrapper .list-group-item.text-danger:focus {
+                    background-color: #e74c3c;
+                    color: white;
+                }
+
+        #sidebar-wrapper .sidebar-heading {
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid #fff;
+            color: white;
+        }
+
+     
+        #page-content-wrapper {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px); 
+            min-height: 100vh;
+            background-color: #F5F5DC;
+        }
+
+        body {
+            background-color: #F5F5DC;
+            margin: 0;
+        }
+
+        .container-fluid {
+            flex-grow: 1;
+            background-color: #F5F5DC;
+        }
+
+        footer {
+            background-color: #9DC183;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+       
+        .list-group-item i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+     
+        <div id="sidebar-wrapper">
+           
+            <div class="sidebar-logo">
+                <img src="~/Images/amlogo.jpg" alt="Business Logo" />
+            </div>
+
+            <div class="sidebar-heading">Client Dashboard</div>
+            <div class="list-group list-group-flush">
+                <a href="@Url.Action("Index", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-tachometer-alt"></i> Home
+                </a>
+                <a href="@Url.Action("QuoteGeneratorCust", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-file-invoice-dollar"></i> Quote Generator
+                </a>
+               @*  <a href="@Url.Action("ViewCarStatus", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-users"></i> View Car Status
+                </a> *@
+                <a href="@Url.Action("ServiceHistory", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-car"></i> View Service History
+                </a>
+             @*    <a href="@Url.Action("InventoryManagement", "Admin")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-warehouse"></i> Inventory Management
+                </a>
+                <a href="@Url.Action("Analytics", "Admin")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a> *@
+            </div>
+            <hr class="my-1"> <!-- Divider line -->
+            <div class="sidebar-heading">My Profile</div>
+            <div class="list-group list-group-flush">
+                <a href="@Url.Action("Account", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-user"></i>Account Settings
+                </a>
+                <a href="@Url.Action("Logout", "Customer")" class="list-group-item list-group-item-action">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="ml-auto">
+            <div class="container-fluid mt-4">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/servicepagestyle.css" />
+
+<div class="container-fluid" style="margin-left: 250px;">
+
+
+    <h1>Service History</h1>
+
+
+
+    <div class="service-cards-container">
+
+        @if (ViewBag.Services != null)
+        {
+            //generate a service card
+            foreach (var service in ViewBag.Services)
+            {
+                <section class="service-card">
+                    <h2 class="service-name">@service.Name</h2>
+                    <p class="@(service.Status == "Not Started" ? "status-badge-not-started" :
+            service.Status == "Completed" ? "status-badge-completed" :
+            service.Status == "Busy" ? "status-badge-busy" : "")">
+                        Status: @service.Status
+                    </p>
+                    <div class="service-details">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td><strong>Vehicle:</strong></td>
+                                <td>@service.Model</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Number Plate:</strong></td>
+                                <td>@service.NumberPlate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date Taken In:</strong></td>
+                                <td>@service.DateTakenIn</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date Vehicle Returned:</strong></td>
+                                <td>@service.DateReturned</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #EE2F2E;">Total Cost:</strong></td>
+                                <td style="color: #EE2F2E;">@service.TotalCost</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            }
+        }
+        else
+        {
+            <p>No services available.</p>
+            <br />
+            <p style="color: #EE2F2E;"> @ViewBag.ErrorMessage</p>
+        }
+
+
+    </div>
+
+</div>

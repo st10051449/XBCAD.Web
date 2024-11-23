@@ -1,0 +1,75 @@
+﻿@model List<VehicleModel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="margin-left: 250px;">
+    <h2>Vehicles</h2>
+    <p>View all vehicles registered to the business.</p>
+
+    <!-- Search Form -->
+    <form method="get" action="/Admin/VehicleManagement">
+        <div class="form-group row">
+            <div class="col-md-8">
+                <input type="text" name="searchQuery" class="form-control" placeholder="Search by number plate, owner name, make or model..." />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            <div class="col-md-2">
+                <a href="/Admin/VehicleManagement" class="btn btn-secondary">Display All</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="card">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>License Plate</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Kms Travelled</th>
+                    <th>Vin Number</th>
+                    <th>Vehicle Owner</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No vehicles found.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var vehicle in Model)
+                    {
+                        <tr>
+                            <td>@vehicle.vehicleNumPlate</td>
+                            <td>@vehicle.vehicleMake</td>
+                            <td>@vehicle.vehicleModel</td>
+                            <td>@vehicle.vehicleYear</td>
+                            <td>@vehicle.vehicleKms</td>
+                            <td>@vehicle.vinNumber</td>
+                            <td>@vehicle.vehicleOwner</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(vehicle.frontImageURL))
+                                {
+                                    <img src="@vehicle.frontImageURL" alt="Front Image" style="width: 100px; height: auto;" />
+                                }
+                                else
+                                {
+                                    <span>No Image</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
